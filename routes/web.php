@@ -16,18 +16,18 @@ Route::get('/contact', function () {
 });
 
 Route::get('/jobs', function () {
-$job = Job::with('employer')->get();
-    return view('jobs',[
+    $job = Job::with('employer')->cursorPaginate(3);
+    return view('jobs', [
         'greeting' => 'Wellcome',
         'jobs' => $job
     ]);
 });
 
-Route::get('/jobs/{id}', function ($id){
+Route::get('/jobs/{id}', function ($id) {
 
-            
+
     $job = Job::find($id);
-   // dd($job);
+    // dd($job);
 
-    return view('job',['job' => $job]);
+    return view('job', ['job' => $job]);
 });
