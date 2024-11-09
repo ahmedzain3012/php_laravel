@@ -16,9 +16,10 @@ Route::get('/contact', function () {
 });
 
 Route::get('/jobs', function () {
+$job = Job::with('employer')->get();
     return view('jobs',[
         'greeting' => 'Wellcome',
-        'jobs' => Job::all()
+        'jobs' => $job
     ]);
 });
 
